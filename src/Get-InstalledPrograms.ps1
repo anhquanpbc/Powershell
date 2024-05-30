@@ -10,17 +10,17 @@
     The display name to filter the list of installed programs. If not provided, all installed programs are listed.
 
 .EXAMPLE
-    <##> Get-InstalledPrograms
-Retrieves and lists all installed programs.
+    Get-InstalledPrograms
+    Retrieves and lists all installed programs.
 
 .EXAMPLE
-<##> Get-InstalledPrograms -DisplayName "Yarn"
-Retrieves and lists all installed programs with "Yarn" in their display name.
+    Get-InstalledPrograms -DisplayName "Yarn"
+    Retrieves and lists all installed programs with "Yarn" in their display name.
 
 .NOTES
-Author: anhquanpbc
-Date: 2024-05-30
-Version: 1.0.0
+    Author: anhquanpbc
+    Date: 2024-05-30
+    Version: 1.0.0
 #>
 function Get-InstalledPrograms {
     [CmdletBinding()]
