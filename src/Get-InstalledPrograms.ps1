@@ -1,6 +1,8 @@
 function Get-InstalledPrograms {
     [CmdletBinding()]
-    param ()
+    param (
+        [string]$DisplayName
+    )
 
     # Retrieve the list of installed programs from the registry
     $programs32 = Get-ItemProperty -Path "HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\*" `
@@ -17,19 +19,22 @@ function Get-InstalledPrograms {
 
     # Remove duplicate entries based on DisplayName
     $uniquePrograms = $allPrograms | Sort-Object DisplayName -Unique
-    return $uniquePrograms
+
+    # Filter by DisplayName if the parameter is provided
+    if ($PSCmdlet.ParameterSetName -eq '' -or $DisplayName) {
+        $filteredPrograms = $uniquePrograms | Where-Object { $_.DisplayName -like "*$DisplayName*" }
+    }
+    else {
+        $filteredPrograms = $uniquePrograms
+    }
+
+    # Return the filtered or complete list of programs
+    return $filteredPrograms
 }
 
-# Call the function to get the list of installed programs
-$installedPrograms = Get-InstalledPrograms
-# Display specific program details
-foreach ($program in $installedPrograms) {
-    if ($program.DisplayName -eq "Yarn") {
-        Write-Host "DisplayName: $($program.DisplayName)"
-        Write-Host "DisplayVersion: $($program.DisplayVersion)"
-        Write-Host "Publisher: $($program.Publisher)"
-        Write-Host "InstallDate: $($program.InstallDate)"
-        Write-Host "Registry Key: $($program.PSPath)"
-        Write-Host "----------------------------------------"
-    }
-}
+# Example usage:
+# Get all programs
+# Get-InstalledPrograms
+
+# Get programs with a specific display name
+# Get-InstalledPrograms -DisplayName "PowerToys"
