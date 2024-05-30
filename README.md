@@ -1,7 +1,33 @@
 # Powershell
 
 Below are several PowerShell function examples, from simple to complex:
+### Block comments
+Designated by the symbols <# and #>, are specifically used in PowerShell to document functions.
+```powershell
+<#
+.SYNOPSIS
+    [A brief description of what the script does.]
 
+.DESCRIPTION
+    [A detailed description of the script, including how it works and its intended use.]
+
+.PARAMETER [Parameter_Name]
+    [Description of this parameter.]
+
+.EXAMPLE
+    [Example of how to use the script.]
+
+.NOTES
+    Author: [Your Name]
+    Date: [Creation Date]
+    Version: [Script Version]
+
+.LINK
+    [Link to documentation or online source, if any.]
+
+#>
+
+```
 ### Basic Function
 A simple function that takes no parameters and performs a basic task.
 
