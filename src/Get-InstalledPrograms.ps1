@@ -1,6 +1,31 @@
+<#
+.SYNOPSIS
+    Retrieves a list of installed programs from the registry.
+
+.DESCRIPTION
+    This function retrieves a list of installed programs from both the 32-bit and 64-bit registry paths.
+    It can filter the list based on a provided display name or list all installed programs if no display name is provided.
+
+.PARAMETER DisplayName
+    The display name to filter the list of installed programs. If not provided, all installed programs are listed.
+
+.EXAMPLE
+    <##> Get-InstalledPrograms
+Retrieves and lists all installed programs.
+
+.EXAMPLE
+<##> Get-InstalledPrograms -DisplayName "Yarn"
+Retrieves and lists all installed programs with "Yarn" in their display name.
+
+.NOTES
+Author: anhquanpbc
+Date: 2024-05-30
+Version: 1.0.0
+#>
 function Get-InstalledPrograms {
     [CmdletBinding()]
     param (
+        [Parameter(Mandatory = $false)]
         [string]$DisplayName
     )
 
@@ -33,8 +58,5 @@ function Get-InstalledPrograms {
 }
 
 # Example usage:
-# Get all programs
-# Get-InstalledPrograms
-
-# Get programs with a specific display name
-# Get-InstalledPrograms -DisplayName "PowerToys"
+<##> Get-InstalledPrograms
+<##> Get-InstalledPrograms -DisplayName "Yarn"
